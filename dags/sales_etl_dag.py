@@ -151,14 +151,14 @@ with DAG(
     create_ods_tables = SQLExecuteQueryOperator(
         task_id='create_ods_tables',
         conn_id=DWH_CONN,
-        sql="/opt/airflow/sql/ods_tables_create.sql",
+        sql="/opt/airflow/script/ods_tables_create.sql",
         database='source_db',
     )
 
     processing_ods_tables = SQLExecuteQueryOperator(
         task_id='processing_ods_tables',
         conn_id=DWH_CONN,
-        sql="/opt/airflow/sql/ods_processing.sql",
+        sql="/opt/airflow/script/ods_processing.sql",
         database='source_db',
     )
 
@@ -166,14 +166,14 @@ with DAG(
     create_fact_sales = SQLExecuteQueryOperator(
         task_id='create_fact_sales',
         conn_id=DWH_CONN_ID,
-        sql="/opt/airflow/sql/fact_sales.sql",
+        sql="/opt/airflow/script/fact_sales.sql",
         database='source_db',
     )
 
     create_share_shipments = SQLExecuteQueryOperator(
         task_id='create_share_shipments',
         conn_id=DWH_CONN_ID,
-        sql="/opt/airflow/sql/share_shipments.sql",
+        sql="/opt/airflow/script/share_shipments.sql",
         database='source_db',
     )
 
