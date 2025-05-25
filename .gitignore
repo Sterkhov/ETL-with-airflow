@@ -1,0 +1,4 @@
+# Explicitly ignore specified directories
+logs/
+dags/**/__pycache__/
+.env

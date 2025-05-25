@@ -1,0 +1,15 @@
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=password" -p 1433:1433 --name sqlserver -d mcr.microsoft.com/azure-sql-edge
+
+docker network connect airflow_default sqlserver
+docker exec -it airflow-airflow-worker-1 nc -zv sqlserver 1433
+
+docker-compose run airflow-cli connections add 'mssql_source_db' \
+    --conn-type 'mssql' \
+    --conn-login 'sa' \
+    --conn-password '2207Yjdsqtco-' \
+    --conn-host 'localhost' \
+    --conn-port '1433' \
+    --conn-schema 'source_db' \
+    --conn-extra '{"charset": "UTF8", "TrustServerCertificate": "yes"}'
+
+
